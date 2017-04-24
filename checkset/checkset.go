@@ -43,8 +43,9 @@ func (c *Checkset) Run() *Checkset {
 
 	funcs := make([](func() (*Check, error)), 0)
 	funcs = append(funcs,
-		c.newCheck().Standalone,
-		c.newCheck().Etcdopened)
+		c.NewCheck().Standalone,
+		c.NewCheck().Etcdopened,
+		c.NewCheck().Apiinsecure)
 	for _, f := range funcs {
 		if check, err := f(); err == nil {
 			c.Checks = append(c.Checks, check)
@@ -66,7 +67,8 @@ func (c *Checkset) printDeviations() {
 	}
 }
 
-func (c *Checkset) newCheck() (check *Check) {
+//NewCheck constructs new Check
+func (c *Checkset) NewCheck() (check *Check) {
 	check = new(Check)
 	check.checkset = c
 	return check

@@ -9,7 +9,7 @@ It's a prototype ...
 	- Namespace network isolation
 	- Rbac test
 	- OpenID
-	- Etcd not protected
+	- Etcd not protected - Done
 	- Api not protected
 	- Scheduler not protected
 
