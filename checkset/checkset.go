@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"text/tabwriter"
 
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
@@ -62,9 +63,14 @@ func (c *Checkset) Print() {
 func (c *Checkset) printDeviations() {
 	//Results := runResults()
 	//var Result Result
+	w := tabwriter.NewWriter(os.Stdout, 2, 0, 2, ' ', tabwriter.Debug)
+	fmt.Fprintln(w, "Code\tCategory\tDescription\tResult\tResources\t")
+
 	for _, Result := range c.Checks {
-		fmt.Printf("Code: %v Category: %v Description: %v Result: %v Resources: %v \n", Result.code, Result.category, Result.description, Result.Result, Result.resources)
+		fmt.Fprintf(w, "%v\t%v\t%v\t%v\t%v\t\n", Result.code, Result.category, Result.description, Result.Result, Result.resources)
 	}
+
+	w.Flush()
 }
 
 //NewCheck constructs new Check
