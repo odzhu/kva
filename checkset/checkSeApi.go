@@ -6,7 +6,7 @@ import "strings"
 func (c *Check) Apiinsecure() (*Check, error) {
 	c.code = 202
 	c.category = "security"
-	c.description = "Api server public availability check"
+	c.description = "Api server plaintext endpoint enabled"
 
 	h := strings.Split(c.checkset.Config.Host, ":")
 	//TLS enabled ?

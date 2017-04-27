@@ -44,6 +44,7 @@ func (c *Checkset) Run() *Checkset {
 
 	funcs := make([](func() (*Check, error)), 0)
 	funcs = append(funcs,
+		c.NewCheck().DefaultSC,
 		c.NewCheck().Standalone,
 		c.NewCheck().Etcdopened,
 		c.NewCheck().Apiinsecure)

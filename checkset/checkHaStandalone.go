@@ -10,7 +10,7 @@ func (c *Check) Standalone() (*Check, error) {
 	}
 	c.code = 101
 	c.category = "ha"
-	c.description = "Result standalone pods"
+	c.description = "Unsupervised pods present"
 
 	//fmt.Printf("%+v", pods)
 	var spods []string

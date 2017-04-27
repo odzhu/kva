@@ -14,7 +14,7 @@ import (
 func (c *Check) Etcdopened() (*Check, error) {
 	c.code = 201
 	c.category = "security"
-	c.description = "Etcd public availability check"
+	c.description = "Etcd not protected"
 	//fmt.Printf("%+v", c.checkset.Config.Host)
 	if c.checkset.Config.Host != "" {
 		u, err := url.Parse(c.checkset.Config.Host)
