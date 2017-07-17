@@ -8,4 +8,5 @@ type Check struct {
 	description string
 	Result      bool
 	resources   []string
+	err         string
 }

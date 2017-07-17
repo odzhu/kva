@@ -47,7 +47,8 @@ func (c *Checkset) Run() *Checkset {
 		c.NewCheck().DefaultSC,
 		c.NewCheck().Standalone,
 		c.NewCheck().Etcdopened,
-		c.NewCheck().Apiinsecure)
+		c.NewCheck().Apiinsecure,
+		c.NewCheck().RbacDisabled)
 	for _, f := range funcs {
 		if check, err := f(); err == nil {
 			c.Checks = append(c.Checks, check)
@@ -65,10 +66,10 @@ func (c *Checkset) printDeviations() {
 	//Results := runResults()
 	//var Result Result
 	w := tabwriter.NewWriter(os.Stdout, 2, 0, 2, ' ', tabwriter.Debug)
-	fmt.Fprintln(w, "Code\tCategory\tDescription\tResult\tResources\t")
+	fmt.Fprintln(w, "Code\tCategory\tDescription\tResult\tResources")
 
 	for _, Result := range c.Checks {
-		fmt.Fprintf(w, "%v\t%v\t%v\t%v\t%v\t\n", Result.code, Result.category, Result.description, Result.Result, Result.resources)
+		fmt.Fprintf(w, "%v\t%v\t%v\t%v\t%v\n", Result.code, Result.category, Result.description, Result.Result, Result.resources)
 	}
 
 	w.Flush()
